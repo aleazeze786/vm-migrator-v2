@@ -17,32 +17,32 @@ function Login({ onLogin }: { onLogin: () => void }) {
     }
   }
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-6">
+    <div className="min-h-screen bg-[var(--body-bg)] flex items-center justify-center p-6">
       <div className="w-full max-w-md">
         <div className="text-center mb-6">
-          <h1 className="text-3xl font-semibold tracking-tight">VM Migrator</h1>
-          <p className="text-sm text-gray-500 mt-1">Sign in to continue</p>
+          <h1 className="text-3xl font-semibold tracking-tight text-[var(--text-primary)]">VM Migrator</h1>
+          <p className="text-sm text-[var(--text-muted)] mt-1">Sign in to continue</p>
         </div>
-        <div className="bg-white rounded-xl shadow border border-gray-200 p-6">
+        <div className="bg-[var(--panel-bg)] rounded-xl border border-[var(--panel-border)] shadow-sm p-6">
           <form onSubmit={submit} className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700">Username</label>
-              <input className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              <label className="block text-sm font-medium text-[var(--text-muted)]">Username</label>
+              <input className="mt-1 w-full rounded-lg border border-[var(--panel-border)] px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
                      value={username} onChange={e=>setUsername(e.target.value)} />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700">Password</label>
+              <label className="block text-sm font-medium text-[var(--text-muted)]">Password</label>
               <input type="password"
-                     className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                     className="mt-1 w-full rounded-lg border border-[var(--panel-border)] px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
                      value={password} onChange={e=>setPassword(e.target.value)} />
             </div>
-            <button className="w-full inline-flex justify-center rounded-lg bg-indigo-600 px-4 py-2 text-white font-medium hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-200">
+            <button className="w-full inline-flex justify-center rounded-lg bg-[var(--accent)] px-4 py-2 text-white font-medium hover:bg-[var(--accent-hover)] focus:ring-4 focus:ring-orange-200">
               Sign in
             </button>
             {error && <p className="text-sm text-red-600">{error}</p>}
           </form>
         </div>
-        <p className="text-center text-xs text-gray-400 mt-4">default: admin / admin</p>
+        <p className="text-center text-xs text-[var(--text-muted)] mt-4">default: admin / admin</p>
       </div>
     </div>
   )
@@ -56,43 +56,69 @@ export default function App() {
   if (!authed) return <Login onLogin={()=>{ setAuthed(true); navigate('/') }} />
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-gradient-to-r from-[var(--bg)] to-[var(--bg2)] text-white">
-        <div className="mx-auto max-w-7xl px-4 py-4 flex items-center justify-between">
-          <h1 className="text-xl font-semibold">VM Migrator</h1>
+    <div className="min-h-screen bg-[var(--body-bg)] text-[var(--text-primary)] flex flex-col">
+      <header className="bg-[var(--header-bg)] border-b border-[var(--header-border)] text-white">
+        <div className="px-6 py-4 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <span className="text-xl font-semibold tracking-tight">VM</span>
+            <span className="text-xl font-light text-[var(--accent)]">Migrator</span>
+          </div>
           <button
             onClick={logout}
-            className="rounded-lg bg-white/10 hover:bg-white/20 px-3 py-1.5 text-sm"
+            className="rounded bg-white/10 px-3 py-1.5 text-sm hover:bg-white/20"
           >
             Logout
           </button>
         </div>
+        <nav className="px-4 pb-3 flex gap-2 lg:hidden">
+          <NavLink
+            to="/"
+            end
+            className={({isActive}) => `flex-1 rounded-md px-3 py-2 text-center text-sm transition-colors ${isActive ? 'bg-[var(--accent)] text-white' : 'bg-[#2c2f34] text-gray-300'}`}
+          >VMs</NavLink>
+          <NavLink
+            to="/providers"
+            className={({isActive}) => `flex-1 rounded-md px-3 py-2 text-center text-sm transition-colors ${isActive ? 'bg-[var(--accent)] text-white' : 'bg-[#2c2f34] text-gray-300'}`}
+          >Providers</NavLink>
+          <NavLink
+            to="/jobs"
+            className={({isActive}) => `flex-1 rounded-md px-3 py-2 text-center text-sm transition-colors ${isActive ? 'bg-[var(--accent)] text-white' : 'bg-[#2c2f34] text-gray-300'}`}
+          >Jobs</NavLink>
+          <NavLink
+            to="/logs"
+            className={({isActive}) => `flex-1 rounded-md px-3 py-2 text-center text-sm transition-colors ${isActive ? 'bg-[var(--accent)] text-white' : 'bg-[#2c2f34] text-gray-300'}`}
+          >Logs</NavLink>
+        </nav>
+        <div className="h-1 bg-[var(--accent)]" />
       </header>
 
-      {/* Body */}
-      <div className="mx-auto max-w-7xl px-4 py-6 grid grid-cols-12 gap-6">
-        <aside className="col-span-12 lg:col-span-3">
-          <nav className="bg-white rounded-xl shadow border border-gray-200 p-3 space-y-1">
+      <div className="flex flex-1 overflow-hidden">
+        <aside className="hidden lg:flex lg:w-64 bg-[var(--sidebar-bg)] border-r border-[var(--sidebar-border)] text-gray-200 flex-col">
+          <div className="px-4 py-3 text-xs uppercase tracking-wide text-gray-400">Navigation</div>
+          <nav className="flex-1 px-2 space-y-1">
             <NavLink
               to="/"
               end
-              className={({isActive}) => `block rounded-md px-3 py-2 text-sm ${isActive ? 'bg-indigo-50 text-indigo-700' : 'hover:bg-gray-50 text-gray-700'}`}
+              className={({isActive}) => `block rounded-md px-3 py-2 text-sm transition-colors ${isActive ? 'bg-[var(--accent)] text-white' : 'text-gray-300 hover:bg-[#32363c] hover:text-white'}`}
             >VMs</NavLink>
             <NavLink
               to="/providers"
-              className={({isActive}) => `block rounded-md px-3 py-2 text-sm ${isActive ? 'bg-indigo-50 text-indigo-700' : 'hover:bg-gray-50 text-gray-700'}`}
+              className={({isActive}) => `block rounded-md px-3 py-2 text-sm transition-colors ${isActive ? 'bg-[var(--accent)] text-white' : 'text-gray-300 hover:bg-[#32363c] hover:text-white'}`}
             >Providers</NavLink>
             <NavLink
               to="/jobs"
-              className={({isActive}) => `block rounded-md px-3 py-2 text-sm ${isActive ? 'bg-indigo-50 text-indigo-700' : 'hover:bg-gray-50 text-gray-700'}`}
+              className={({isActive}) => `block rounded-md px-3 py-2 text-sm transition-colors ${isActive ? 'bg-[var(--accent)] text-white' : 'text-gray-300 hover:bg-[#32363c] hover:text-white'}`}
             >Jobs</NavLink>
+            <NavLink
+              to="/logs"
+              className={({isActive}) => `block rounded-md px-3 py-2 text-sm transition-colors ${isActive ? 'bg-[var(--accent)] text-white' : 'text-gray-300 hover:bg-[#32363c] hover:text-white'}`}
+            >Logs</NavLink>
           </nav>
         </aside>
 
-        <main className="col-span-12 lg:col-span-9">
-          <Outlet/>
-        </main>
+        <div className="flex-1 overflow-y-auto p-4 sm:p-6">
+          <Outlet />
+        </div>
       </div>
     </div>
   )

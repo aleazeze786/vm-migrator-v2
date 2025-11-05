@@ -59,24 +59,24 @@ export default function JobDrawer({ jobId, onClose }: Props){
         className={`absolute inset-0 bg-black/40 transition-opacity ${open ? 'opacity-100' : 'opacity-0'}`}
       />
       {/* panel */}
-      <div className={`absolute right-0 top-0 h-full w-full max-w-md bg-white shadow-xl border-l border-gray-200
+      <div className={`absolute right-0 top-0 h-full w-full max-w-md bg-[var(--panel-bg)] shadow-xl border-l border-[var(--panel-border)]
                        transition-transform ${open ? 'translate-x-0' : 'translate-x-full'}`}>
-        <div className="p-4 border-b border-gray-200 flex items-center justify-between">
-          <h3 className="text-lg font-semibold">Job #{jobId} – <span className="text-gray-500">{status}</span></h3>
-          <button className="rounded-md border border-gray-300 px-2 py-1 hover:bg-gray-50" onClick={onClose}>Close</button>
+        <div className="p-4 border-b border-[var(--panel-border)] flex items-center justify-between">
+          <h3 className="text-lg font-semibold text-[var(--text-primary)]">Job #{jobId} – <span className="text-[var(--text-muted)]">{status}</span></h3>
+          <button className="rounded-md border border-[var(--panel-border)] px-2 py-1 text-sm hover:bg-gray-100" onClick={onClose}>Close</button>
         </div>
 
         <div className="p-4 space-y-4">
           <div>
             <div className="h-2 w-full bg-gray-200 rounded-full overflow-hidden">
-              <div className="h-full bg-indigo-600 transition-all" style={{ width: `${progress}%` }} />
+              <div className="h-full bg-[var(--accent)] transition-all" style={{ width: `${progress}%` }} />
             </div>
-            <div className="text-xs text-gray-500 mt-1">{progress}%</div>
+            <div className="text-xs text-[var(--text-muted)] mt-1">{progress}%</div>
           </div>
 
           <div>
-            <div className="text-sm font-medium mb-2">Live Logs</div>
-            <div ref={logRef} className="h-[50vh] overflow-auto rounded-lg border border-gray-200 bg-gray-50 p-3 text-sm leading-6">
+            <div className="text-sm font-medium text-[var(--text-primary)] mb-2">Live Logs</div>
+            <div ref={logRef} className="h-[50vh] overflow-auto rounded-lg border border-[var(--panel-border)] bg-gray-100 p-3 text-sm leading-6">
               {logs.map((line, idx)=> (
                 <div key={idx} className="font-mono text-gray-700">{line}</div>
               ))}

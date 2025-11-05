@@ -4,8 +4,33 @@
 
 /* App variables / custom bits */
 :root {
-  --card: #ffffff;
-  --muted: #6b7280; /* gray-500 */
-  --bg: #0b0f1a;    /* dark header gradient start */
-  --bg2: #111827;   /* dark header gradient end */
+  --body-bg: #f1f2f6;
+  --header-bg: #1f1f1f;
+  --header-border: #2c2c2c;
+  --sidebar-bg: #2a2d32;
+  --sidebar-border: #3a3d42;
+  --panel-bg: #ffffff;
+  --panel-border: #d4d8de;
+  --accent: #e57000;
+  --accent-hover: #c96100;
+  --text-primary: #1f1f1f;
+  --text-muted: #6b7280;
+}
+
+body {
+  background-color: var(--body-bg);
+  color: var(--text-primary);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #e1e3e8;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #b0b3bb;
+  border-radius: 6px;
 }

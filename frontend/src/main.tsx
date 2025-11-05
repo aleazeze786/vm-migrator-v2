@@ -6,6 +6,7 @@ import App from './ui/App'
 import ProvidersPage from './ui/ProvidersPage'
 import VMsPage from './ui/VMsPage'
 import JobsPage from './ui/JobsPage'
+import LogsPage from './ui/LogsPage'
 
 const router = createBrowserRouter([
   { path: '/', element: <App />,
@@ -13,6 +14,7 @@ const router = createBrowserRouter([
       { index: true, element: <VMsPage/> },
       { path: 'providers', element: <ProvidersPage/> },
       { path: 'jobs', element: <JobsPage/> },
+      { path: 'logs', element: <LogsPage/> },
     ]
   }
 ])

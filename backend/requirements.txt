@@ -10,4 +10,7 @@ redis==5.0.8
 psycopg2-binary==2.9.9
 python-dotenv==1.0.1
 bcrypt==3.2.2
-
+pyvmomi==8.0.3.0
+proxmoxer==2.0.1
+requests==2.32.3
+six==1.16.0
