@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* App variables / custom bits */
+:root {
+  --card: #ffffff;
+  --muted: #6b7280; /* gray-500 */
+  --bg: #0b0f1a;    /* dark header gradient start */
+  --bg2: #111827;   /* dark header gradient end */
+}
